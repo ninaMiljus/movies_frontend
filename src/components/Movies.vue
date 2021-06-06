@@ -5,10 +5,12 @@
                 <th>Title</th>
                 <th>Director</th>
                 <th>Action</th>
+                <th>View movie</th>
             </tr>
             <tr v-for="movie in movies" :key="movie.id">
                 <td>{{movie.title}}</td>
                 <td>{{movie.director}}</td>
+                <td><router-link :to="`/movies/${movie.id}`">Single movie</router-link></td>
                 <td><button @click="remove(movie.id)">Delete movie</button></td>
             </tr>
         </table>

@@ -7,20 +7,20 @@ export default class MoviesService{
         return response.data;
     }
 
-    async getSingleMovie(){
-        const response = await baseService.get('/movies/{id}');
+    async getSingleMovie(id){
+        const {data} = await baseService.get(`/movies/${id}`);
+
+        return data;
+    }
+
+    async addMovie(movie){
+        const response = await baseService.post('/movies', movie);
 
         return response;
     }
 
-    async addMovie(){
-        const response = await baseService.post('/movies');
-
-        return response;
-    }
-
-    async deleteMovie(){
-        const response = await baseService.delete('/movies/{id}')
+    async deleteMovie(id){
+        const response = await baseService.delete(`movies/${id}`)
     
         return response;
     }

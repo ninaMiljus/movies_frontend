@@ -1,10 +1,9 @@
 <template>
     <div>
-        <p>{{movie.title}}</p>
-        <p>{{movie.director}}</p>
+        <h1>{{movie.title}}</h1>
+        <h2>{{movie.director}}</h2>
     </div>
 </template>
-
 <script>
 import {moviesService} from '../services/moviesService.js'
 export default {
@@ -14,15 +13,14 @@ export default {
         }
     },
 
-    created(){
-        this.movie = this.getSingleMovie();
+    beforeRouteEnter(to, from, next) {
+        next(async vm => {
+            try {
+                vm.movie = await moviesService.getSingleMovie(to.params.id);
+            } catch(e) {
+                console.log(e);
+            }
+        })
     },
-
-    methods: {
-        async getSingleMovie(){
-            await moviesService.getSingleMovie('/movies/{id}');
-        }
-    }
-
 }
 </script>

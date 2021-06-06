@@ -29,8 +29,8 @@ export default {
     methods: {
         async addMovie(){
             try{
-                await moviesService.add(this.movie);
-                this.$router.push('/movies');
+                await moviesService.addMovie(this.movie);
+                this.$router.push({name: 'movies'});
             } catch(err){
                 console.log(err);
             }
