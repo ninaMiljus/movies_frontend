@@ -14,11 +14,14 @@
                 <td><button @click="remove(movie.id)">Delete movie</button></td>
             </tr>
         </table>
+        <br>
+        <button @click="logout" class="btn btn-danger">Logout</button>
     </div>
 </template>
 
 <script>
 import {moviesService} from '../services/moviesService.js'
+import { authService } from "../services/authService";
 export default {
     data(){
         return{
@@ -46,7 +49,12 @@ export default {
             } catch(err){
                 console.log(err);
             }
-        }
+        },
+
+        logout() {
+            authService.logout();
+            this.$router.push("/login");
+        },
     }
 }
 </script>
