@@ -25,7 +25,6 @@ export default class MoviesService{
     
         return response;
     }
-
 }
 
 export const moviesService = new MoviesService;

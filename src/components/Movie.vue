@@ -5,22 +5,27 @@
     </div>
 </template>
 <script>
-import {moviesService} from '../services/moviesService.js'
-export default {
-    data(){
-        return {
-            movie: {}
-        }
-    },
+import store from '../store';
+import {mapActions, mapGetters} from 'vuex';
 
-    beforeRouteEnter(to, from, next) {
-        next(async vm => {
-            try {
-                vm.movie = await moviesService.getSingleMovie(to.params.id);
-            } catch(e) {
-                console.log(e);
-            }
+
+export default {
+    name: "movie",
+    computed: {
+        ...mapGetters({
+            movie: 'movies/movie'
         })
     },
+
+    methods: {
+        ...mapActions({
+            getSingleMovie: 'movies/getSingleMovie'
+        })
+    },
+
+    async beforeRouteEnter(to, from, next) {
+        await store.dispatch("movies/getSingleMovie");
+        next();
+    },  
 }
 </script>

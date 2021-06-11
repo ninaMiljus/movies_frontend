@@ -1,16 +1,16 @@
 <template>
     <div>
     <div>
+        movies
       <ul>
         <movie-row
           v-for="(movie, index) in allMovies"
           :key="index"
           :movie="movie"
-          >Movies</movie-row
-        >
+          >Movies</movie-row>
       </ul>
     </div>
-    <button @click="logout" class="btn btn-danger">Logout</button>
+    <!-- <button @click="logout" class="btn btn-danger">Logout</button> -->
   </div>
 </template>
 
@@ -23,32 +23,23 @@ export default {
     components: {MovieRow},
     name: "movies",
     computed: {
-        ...mapGetters(["allMovies"]),
+        ...mapGetters({
+            allMovies: 'movies/allMovies',
+            id: 'movies/id'
+        })
     },
 
     methods: {
-        ...mapActions(["getAllMovies"]),
+        ...mapActions({
+            getAllMovies: 'movies/getAllMovies',
+            remove: 'movies/remove'
+        }),
 
-        
-        /* async remove(id){
-            try{
-                await moviesService.deleteMovie(id);
-                this.movies = this.movies.filter(movie => movie.id !== id);
-            } catch(err){
-                console.log(err);
-            }
-        },
-
-        logout() {
-            authService.logout();
-            this.$router.push("/login");
-        },
-        */
+    },
 
     async beforeRouteEnter(to, from, next) {
-        await store.dispatch("getAllMovies");
+        await store.dispatch("movies/getAllMovies");
         next();
-    },        
-    }
+    },  
 }
 </script>
