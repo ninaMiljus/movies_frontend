@@ -1,6 +1,7 @@
 import baseService from '../services/baseSevice.js'
 
 export default class MoviesService{
+
     async getAllMovies(){
         const response = await baseService.get('/movies');
 
@@ -24,6 +25,7 @@ export default class MoviesService{
     
         return response;
     }
+
 }
 
 export const moviesService = new MoviesService;

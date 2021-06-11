@@ -3,7 +3,10 @@ export function globalAuthGuard(to, from, next) {
     if (to.meta.authRequired && !isAuthenticated) {
         next('login');
     } if (to.meta.guestRequired && isAuthenticated) {
-        next('/');
+        next('/login');
+    }
+    if (from.meta.guestRequired && isAuthenticated) {
+        next("/");
     }
     next();
 } 

@@ -11,7 +11,6 @@
             id="email"
             v-model="user.email"
             type="email"
-            required
             placeholder="Enter email"
           >
           </b-form-input>
@@ -25,7 +24,6 @@
             id="password"
             v-model="user.password"
             type="password"
-            required
             placeholder="Enter password"
           >
           </b-form-input>
@@ -43,6 +41,7 @@ export default {
   data() {
     return {
       user: {},
+      error: "",
     };
   },
   components: {},
@@ -52,7 +51,15 @@ export default {
         console.log(response);
         this.$router.push('/movies');
       })
+      .catch((error) => {
+          this.error = error.response.data[1];
+          alert(this.error);
+        });
     }
-  }
+  },
+
+  wrongCredentials() {
+    alert(this.error);
+  },
 };
 </script>

@@ -31,8 +31,8 @@ export default {
             try{
                 await moviesService.addMovie(this.movie);
                 this.$router.push({name: 'movies'});
-            } catch(err){
-                console.log(err);
+            } catch(errors){
+                this.errors = errors.response.data.errors;
             }
         },
 

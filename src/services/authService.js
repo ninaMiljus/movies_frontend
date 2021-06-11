@@ -21,6 +21,12 @@ export default class AuthService {
         })
     }
 
+    async register(user) {
+        const response = await baseService.post("/register", user);
+    
+        return response;
+    }
+
     async getUsers() {
         const response = await baseService.get('/getUser');
 

@@ -1,4 +1,4 @@
-import movieService from "../../services/movieService";
+import moviesService from "../../services/moviesService";
 
 const state = {
   allMovies: [],
@@ -10,7 +10,7 @@ const getters = {
 
 const actions = {
   async getAllMovies(store) {
-    const data = await movieService.getAll();
+    const data = await moviesService.getAll();
     console.log(data);
 
     store.commit("getAll", data);

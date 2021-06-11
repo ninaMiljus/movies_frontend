@@ -4,6 +4,7 @@ import Movies from '../components/Movies'
 import Movie from '../components/Movie'
 import AddMovie from '../components/AddMovie'
 import LoginComponent from '../components/LoginComponent'
+import AppRegister from "../components/AppRegister";
 
 import { globalAuthGuard } from '../guards/auth.guard';  
 
@@ -35,6 +36,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginComponent
+  },
+  {
+    path: "/register",
+    name: 'register',
+    component: AppRegister,
   },
 ]
 
